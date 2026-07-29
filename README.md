@@ -4,9 +4,10 @@ A multi-module Kotlin repository for backend projects from [roadmap.sh](https://
 
 ## Modules
 
-- [`task-tracker`](task-tracker/README.md) — command-line task tracker with JSON persistence
-- `app` — placeholder application module
-- `utils` — shared utilities module
+- [`task-tracker`](task-tracker/README.md) — Command-line task tracker with JSON persistence, based on the
+  [roadmap.sh Task Tracker project](https://roadmap.sh/projects/task-tracker).
+- `app` — Placeholder application module.
+- `utils` — Shared utilities module.
 
 ## Build
 
