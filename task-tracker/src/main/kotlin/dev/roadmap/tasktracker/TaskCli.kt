@@ -18,30 +18,33 @@ class TaskCli(
     private fun execute(args: Array<String>) {
         if (args.isEmpty()) throw TaskTrackerException(usage())
         when (args[0]) {
-            "add" -> {
-                expectSize(args, 2, "add <description>")
-                val task = repository.add(args[1])
-                output.println("Task added successfully (ID: ${task.id})")
-            }
-            "update" -> {
-                expectSize(args, 3, "update <id> <description>")
-                repository.update(parseId(args[1]), args[2])
-                output.println("Task updated successfully")
-            }
-            "delete" -> {
-                expectSize(args, 2, "delete <id>")
-                repository.delete(parseId(args[1]))
-                output.println("Task deleted successfully")
-            }
+            "add" -> add(args)
+            "update" -> update(args)
+            "delete" -> delete(args)
             "mark-in-progress" -> mark(args, TaskStatus.IN_PROGRESS)
             "mark-done" -> mark(args, TaskStatus.DONE)
             "list" -> list(args)
-            "help", "--help", "-h" -> {
-                expectSize(args, 1, "help")
-                output.println(usage())
-            }
+            "help", "--help", "-h" -> help(args)
             else -> throw TaskTrackerException("Unknown command: ${args[0]}\n\n${usage()}")
         }
+    }
+
+    private fun add(args: Array<String>) {
+        expectSize(args, 2, "add <description>")
+        val task = repository.add(args[1])
+        output.println("Task added successfully (ID: ${task.id})")
+    }
+
+    private fun update(args: Array<String>) {
+        expectSize(args, 3, "update <id> <description>")
+        repository.update(parseId(args[1]), args[2])
+        output.println("Task updated successfully")
+    }
+
+    private fun delete(args: Array<String>) {
+        expectSize(args, 2, "delete <id>")
+        repository.delete(parseId(args[1]))
+        output.println("Task deleted successfully")
     }
 
     private fun mark(args: Array<String>, status: TaskStatus) {
@@ -67,6 +70,11 @@ class TaskCli(
         tasks.forEach { task ->
             output.println("${task.id}\t${task.status.value.padEnd(12)}\t${task.description}\t${task.updatedAt}")
         }
+    }
+
+    private fun help(args: Array<String>) {
+        expectSize(args, 1, "help")
+        output.println(usage())
     }
 
     private fun parseId(value: String): Int {

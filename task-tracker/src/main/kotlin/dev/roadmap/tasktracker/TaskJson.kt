@@ -150,8 +150,7 @@ private class JsonParser(private val input: String) {
         expect('"')
         return buildString {
             while (position < input.length) {
-                val character = input[position++]
-                when (character) {
+                when (val character = input[position++]) {
                     '"' -> return@buildString
                     '\\' -> append(parseEscape())
                     else -> {

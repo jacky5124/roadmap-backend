@@ -2,9 +2,11 @@ package dev.roadmap.tasktracker
 
 import java.nio.charset.StandardCharsets
 import java.nio.file.AtomicMoveNotSupportedException
+import java.nio.file.FileAlreadyExistsException
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.StandardCopyOption
+import java.nio.file.StandardOpenOption
 import java.time.Clock
 import java.time.Instant
 
@@ -109,9 +111,9 @@ class TaskRepository(
                         absoluteFile,
                         "[]\n",
                         StandardCharsets.UTF_8,
-                        java.nio.file.StandardOpenOption.CREATE_NEW,
+                        StandardOpenOption.CREATE_NEW,
                     )
-                } catch (_: java.nio.file.FileAlreadyExistsException) {
+                } catch (_: FileAlreadyExistsException) {
                     // Another process created it first.
                 }
             }
