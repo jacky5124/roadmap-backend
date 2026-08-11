@@ -22,5 +22,6 @@ plugins {
 include(":app")
 include(":utils")
 include(":task-tracker")
+include(":github-user-activity")
 
 rootProject.name = "roadmap-backend"

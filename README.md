@@ -6,6 +6,8 @@ A multi-module Kotlin repository for backend projects from [roadmap.sh](https://
 
 - [`task-tracker`](task-tracker/README.md) — Command-line task tracker with JSON persistence, based on the
   [roadmap.sh Task Tracker project](https://roadmap.sh/projects/task-tracker).
+- [`github-user-activity`](github-user-activity/README.md) — Command-line viewer for a GitHub user's recent public
+  activity, based on the [roadmap.sh GitHub User Activity project](https://roadmap.sh/projects/github-user-activity).
 - `app` — Placeholder application module.
 - `utils` — Shared utilities module.
 
